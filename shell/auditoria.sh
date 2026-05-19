@@ -1,3 +1,7 @@
+nano auditoria.sh
+
+---
+
 #!/bin/bash
 
 DATA=$(date +"%Y-%m-%d_%H-%M")
@@ -9,22 +13,27 @@ echo "=============================" >> $RELATORIO
 
 echo "" >> $RELATORIO
 echo "USUARIOS COMUNS:" >> $RELATORIO
+
 awk -F: '$3 >= 1000 {print $1 " UID:" $3}' /etc/passwd >> $RELATORIO
 
 echo "" >> $RELATORIO
 echo "USUARIOS DO SISTEMA:" >> $RELATORIO
+
 awk -F: '$3 < 1000 {print $1 " UID:" $3}' /etc/passwd >> $RELATORIO
 
 echo "" >> $RELATORIO
 echo "USUARIOS SEM SENHA:" >> $RELATORIO
+
 sudo awk -F: '($2 == "" || $2 == "!" || $2 == "*") {print $1}' /etc/shadow >> $RELATORIO
 
 echo "" >> $RELATORIO
 echo "USUARIOS SEM LOGIN:" >> $RELATORIO
+
 lastlog | awk 'NR>1 && ($4 == "**Never" || $5 == "logged") {print $1}' >> $RELATORIO
 
 echo "" >> $RELATORIO
 echo "GRUPOS DOS USUARIOS:" >> $RELATORIO
+
 for usuario in $(awk -F: '$3 >= 1000 {print $1}' /etc/passwd)
 do
     echo "$usuario:" >> $RELATORIO
@@ -35,3 +44,15 @@ echo "" >> $RELATORIO
 echo "RELATORIO FINALIZADO" >> $RELATORIO
 
 echo "Arquivo criado: $RELATORIO"
+
+---
+
+chmod +x auditoria.sh
+
+---
+
+./auditoria.sh
+
+---
+
+cat relatorio_*.txt
