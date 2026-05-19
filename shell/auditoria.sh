@@ -1,7 +1,3 @@
-nano auditoria.sh
-
----
-
 #!/bin/bash
 
 DATA=$(date +"%Y-%m-%d_%H-%M")
@@ -44,15 +40,3 @@ echo "" >> $RELATORIO
 echo "RELATORIO FINALIZADO" >> $RELATORIO
 
 echo "Arquivo criado: $RELATORIO"
-
----
-
-chmod +x auditoria.sh
-
----
-
-./auditoria.sh
-
----
-
-cat relatorio_*.txt
