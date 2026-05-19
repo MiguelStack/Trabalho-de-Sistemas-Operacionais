@@ -9,7 +9,7 @@ echo "=============================" >> $RELATORIO
 
 echo "" >> $RELATORIO
 echo "USUARIOS COMUNS:" >> $RELATORIO
-awk -F: '$3 >= 1000 {print $1 " UID:" $3}' /etc/passwd >> $RELATORIOS
+awk -F: '$3 >= 1000 {print $1 " UID:" $3}' /etc/passwd >> $RELATORIO
 
 echo "" >> $RELATORIO
 echo "USUARIOS DO SISTEMA:" >> $RELATORIO
