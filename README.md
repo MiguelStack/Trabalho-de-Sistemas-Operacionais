@@ -1,4 +1,4 @@
-# Trabalho_Sistemas_Operacionais
+# Trabalho de Sistemas Operacionais
 
 Script em bash que gera um relatório de auditoria sobre os usuários do sistema Linux.
 
